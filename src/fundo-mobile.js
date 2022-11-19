@@ -1,7 +1,6 @@
 import Icone from "./icone.js"
 
 export default function FundoMobile() {
-    console.log("carrega fundo-mobile.js")
     return (
         <div className="fundo-mobile">
             <Icone name="home" />

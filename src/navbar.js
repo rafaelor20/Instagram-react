@@ -1,7 +1,6 @@
 import Icone from "./icone.js"
 
 export default function Navbar() {
-  console.log("carrega navbar.js")
   return (
     <div className="navbar">
       <div className="container">
