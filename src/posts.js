@@ -1,70 +1,64 @@
-export default function Posts() {
+import Icone from "./icone"
+
+const postsLst = [
+    {
+        nomeUsuario: "meowed",
+        iconeUsuario: "assets/img/meowed.svg",
+        imagem: "assets/img/gato-telefone.svg",
+        iconeCurtida: "assets/img/respondeai.svg",
+        usuarioCurtida: "respondeai",
+        quantCurtidas: 101.523
+    },
+    {
+        nomeUsuario: "barked",
+        iconeUsuario: "assets/img/barked.svg",
+        imagem: "assets/img/dog.svg",
+        iconeCurtida: "assets/img/adorable_animals.svg",
+        usuarioCurtida: " adorable_animals ",
+        quantCurtidas: 99.159
+    }
+]
+
+function Post(props) {
     return (
-        <div className="posts">
-            <div className="post">
-                <div className="topo">
-                    <div className="usuario">
-                        <img src="assets/img/meowed.svg" />
-                        meowed
-                    </div>
-                    <div className="acoes">
-                        <ion-icon name="ellipsis-horizontal" />
-                    </div>
+        <div className="post">
+            <div className="topo">
+                <div className="usuario">
+                    <img src={props.iconeUsuario} />
+                    {props.nomeUsuario}
                 </div>
-                <div className="conteudo">
-                    <img src="assets/img/gato-telefone.svg" />
-                </div>
-                <div className="fundo">
-                    <div className="acoes">
-                        <div>
-                            <ion-icon name="heart-outline" />
-                            <ion-icon name="chatbubble-outline" />
-                            <ion-icon name="paper-plane-outline" />
-                        </div>
-                        <div>
-                            <ion-icon name="bookmark-outline" />
-                        </div>
-                    </div>
-                    <div className="curtidas">
-                        <img src="assets/img/respondeai.svg" />
-                        <div className="texto">
-                            Curtido por <strong>respondeai</strong> e <strong>outras 101.523 pessoas</strong>
-                        </div>
-                    </div>
+                <div className="acoes">
+                    <Icone name="ellipsis-horizontal" />
                 </div>
             </div>
-            <div className="post">
-                <div className="topo">
-                    <div className="usuario">
-                        <img src="assets/img/barked.svg" />
-                        barked
+            <div className="conteudo">
+                <img src={props.imagem} />
+            </div>
+            <div className="fundo">
+                <div className="acoes">
+                    <div>
+                        <Icone name="heart-outline" />
+                        <Icone name="chatbubble-outline" />
+                        <Icone name="paper-plane-outline" />
                     </div>
-                    <div className="acoes">
-                        <ion-icon name="ellipsis-horizontal" />
+                    <div>
+                        <Icone name="bookmark-outline" />
                     </div>
                 </div>
-                <div className="conteudo">
-                    <img src="assets/img/dog.svg" />
-                </div>
-                <div className="fundo">
-                    <div className="acoes">
-                        <div>
-                            <ion-icon name="heart-outline" />
-                            <ion-icon name="chatbubble-outline" />
-                            <ion-icon name="paper-plane-outline" />
-                        </div>
-                        <div>
-                            <ion-icon name="bookmark-outline" />
-                        </div>
-                    </div>
-                    <div className="curtidas">
-                        <img src="assets/img/adorable_animals.svg" />
-                        <div className="texto">
-                            Curtido por <strong>adorable_animals</strong> e <strong>outras 99.159 pessoas</strong>
-                        </div>
-                    </div>
+                <div className="curtidas">
+                    <img src={props.iconeCurtida} />
+                    Curtido por <strong> {props.usuarioCurtida} </strong> e <strong> outras {props.quantCurtidas} pessoas</strong>
                 </div>
             </div>
         </div>
     )
 }
+
+export default function Posts() {
+    return (
+        <div className="posts">
+            {postsLst.map(Post)}
+        </div>
+    )
+}
+

@@ -1,3 +1,5 @@
+let user = "Catana"
+
 export default function Usuario() {
     return (
         <div className="usuario">
@@ -5,7 +7,7 @@ export default function Usuario() {
             <div className="texto">
                 <strong>catanacomics</strong>
                 <span>
-                    Catana
+                    {user}
                     <ion-icon name="pencil" />
                 </span>
             </div>

@@ -1,70 +1,31 @@
+const storiesLst = [
+    {nome: "9gag", imagem: "assets/img/9gag.svg"},
+    {nome: "meowed", imagem: "assets/img/meowed.svg"},
+    {nome: "barked", imagem: "assets/img/barked.svg"},
+    {nome: "nathanwpylestrangeplanet", imagem: "assets/img/nathanwpylestrangeplanet.svg"},
+    {nome: "wawawicomics", imagem: "assets/img/wawawicomics.svg"},
+    {nome: "respondeai", imagem: "assets/img/respondeai.svg"},
+    {nome: "filomoderna", imagem: "assets/img/filomoderna.svg"},
+    {nome: "memeriagourmet", imagem: "assets/img/memeriagourmet.svg"},
+]
+
+function Story(props){
+    return (
+        <div className="story">
+                <div className="imagem">
+                    <img src={props.imagem} />
+                </div>
+                <div className="usuario">
+                    {props.nome}
+                </div>
+            </div>
+    )
+}
+
 export default function Stories() {
     return (
         <div className="stories">
-            <div className="story">
-                <div className="imagem">
-                    <img src="assets/img/9gag.svg" />
-                </div>
-                <div className="usuario">
-                    9gag
-                </div>
-            </div>
-            <div className="story">
-                <div className="imagem">
-                    <img src="assets/img/meowed.svg" />
-                </div>
-                <div className="usuario">
-                    meowed
-                </div>
-            </div>
-            <div className="story">
-                <div className="imagem">
-                    <img src="assets/img/barked.svg" />
-                </div>
-                <div className="usuario">
-                    barked
-                </div>
-            </div>
-            <div className="story">
-                <div className="imagem">
-                    <img src="assets/img/nathanwpylestrangeplanet.svg" />
-                </div>
-                <div className="usuario">
-                    nathanwpylestrangeplanet
-                </div>
-            </div>
-            <div className="story">
-                <div className="imagem">
-                    <img src="assets/img/wawawicomics.svg" />
-                </div>
-                <div className="usuario">
-                    wawawicomics
-                </div>
-            </div>
-            <div className="story">
-                <div className="imagem">
-                    <img src="assets/img/respondeai.svg" />
-                </div>
-                <div className="usuario">
-                    respondeai
-                </div>
-            </div>
-            <div className="story">
-                <div className="imagem">
-                    <img src="assets/img/filomoderna.svg" />
-                </div>
-                <div className="usuario">
-                    filomoderna
-                </div>
-            </div>
-            <div className="story">
-                <div className="imagem">
-                    <img src="assets/img/memeriagourmet.svg" />
-                </div>
-                <div className="usuario">
-                    memeriagourmet
-                </div>
-            </div>
+            {storiesLst.map(Story)}
             <div className="setinha">
                 <ion-icon name="chevron-forward-circle" />
             </div>
