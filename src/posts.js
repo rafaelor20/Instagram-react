@@ -2,6 +2,8 @@ import React from "react"
 import Icone from "./icone"
 import IconeSalvarPost from "./iconeSalvarPost"
 
+let like = 0;
+
 const postsLst = [
     {
         nomeUsuario: "meowed",
@@ -9,7 +11,7 @@ const postsLst = [
         imagem: "assets/img/gato-telefone.svg",
         iconeCurtida: "assets/img/respondeai.svg",
         usuarioCurtida: "respondeai",
-        quantCurtidas: 101.523
+        quantCurtidas: 101523
     },
     {
         nomeUsuario: "barked",
@@ -17,14 +19,14 @@ const postsLst = [
         imagem: "assets/img/dog.svg",
         iconeCurtida: "assets/img/adorable_animals.svg",
         usuarioCurtida: " adorable_animals ",
-        quantCurtidas: 99.159
+        quantCurtidas: 99159
     }
 ]
 
 function Post(props) {
-    
+    const [likes, setLikes] = React.useState(props.quantCurtidas);
     return (
-        <div className="post">
+        <div data-test="post" className="post">
             <div className="topo">
                 <div className="usuario">
                     <img src={props.iconeUsuario} />
@@ -35,12 +37,12 @@ function Post(props) {
                 </div>
             </div>
             <div className="conteudo">
-                <img src={props.imagem} />
+                <img data-test="post-image" onClick={()=>(addLike(likes, "picture", setLikes))} src={props.imagem} />
             </div>
             <div className="fundo">
                 <div className="acoes">
                     <div>
-                        <Icone name="heart-outline" />
+                        <ion-icon data-test="like-post" onClick={()=>(addLike(likes, "likeButton", setLikes))} name="heart-outline" ></ion-icon>
                         <Icone name="chatbubble-outline" />
                         <Icone name="paper-plane-outline" />
                     </div>
@@ -50,7 +52,7 @@ function Post(props) {
                 </div>
                 <div className="curtidas">
                     <img src={props.iconeCurtida} />
-                    Curtido por <strong> {props.usuarioCurtida} </strong> e <strong> outras {props.quantCurtidas} pessoas</strong>
+                    <p data-test="likes-number">Curtido por <strong> {props.usuarioCurtida} </strong> e <strong> outras {likes} pessoas</strong></p>
                 </div>
             </div>
         </div>
@@ -65,3 +67,25 @@ export default function Posts() {
     )
 }
 
+function addLike(likes, elem, setLikes){
+    switch(like){
+        case 0:
+            like = 1;
+            setLikes(likes+like);
+            break;
+        case 1:
+            if (elem === "picture"){
+                setLikes(likes);
+                break;
+            }
+            like = (-1);
+            setLikes(likes + like);
+            break;
+        case (-1):
+            like = 1;
+            setLikes(likes+like);
+            break;
+        default:
+            break;
+    }
+}
