@@ -1,4 +1,6 @@
+import React from "react"
 import Icone from "./icone"
+import IconeSalvarPost from "./iconeSalvarPost"
 
 const postsLst = [
     {
@@ -20,6 +22,7 @@ const postsLst = [
 ]
 
 function Post(props) {
+    
     return (
         <div className="post">
             <div className="topo">
@@ -42,7 +45,7 @@ function Post(props) {
                         <Icone name="paper-plane-outline" />
                     </div>
                     <div>
-                        <Icone name="bookmark-outline" />
+                        <IconeSalvarPost name="bookmark-outline" />
                     </div>
                 </div>
                 <div className="curtidas">
