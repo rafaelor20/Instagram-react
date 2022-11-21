@@ -25,6 +25,7 @@ const postsLst = [
 
 function Post(props) {
     const [likes, setLikes] = React.useState(props.quantCurtidas);
+    const [heartColor, setHeartColor] = React.useState("black");
     return (
         <div data-test="post" className="post">
             <div className="topo">
@@ -37,12 +38,12 @@ function Post(props) {
                 </div>
             </div>
             <div className="conteudo">
-                <img data-test="post-image" onClick={()=>(addLike(likes, "picture", setLikes))} src={props.imagem} />
+                <img data-test="post-image" onClick={()=>(addLike(likes, "picture", setLikes, heartColor, setHeartColor))} src={props.imagem} />
             </div>
             <div className="fundo">
                 <div className="acoes">
                     <div>
-                        <ion-icon data-test="like-post" onClick={()=>(addLike(likes, "likeButton", setLikes))} name="heart-outline" ></ion-icon>
+                        <ion-icon class={heartColor} data-test="like-post" onClick={()=>(addLike(likes, "likeButton", setLikes, heartColor, setHeartColor))} name="heart-outline" ></ion-icon>
                         <Icone name="chatbubble-outline" />
                         <Icone name="paper-plane-outline" />
                     </div>
@@ -52,7 +53,7 @@ function Post(props) {
                 </div>
                 <div className="curtidas">
                     <img src={props.iconeCurtida} />
-                    <p data-test="likes-number">Curtido por <strong> {props.usuarioCurtida} </strong> e <strong> outras {likes} pessoas</strong></p>
+                    <p data-test="likes-number">Curtido por <strong> {props.usuarioCurtida} </strong> e <strong> outras {(likesToString(likes))} pessoas</strong></p>
                 </div>
             </div>
         </div>
@@ -67,11 +68,12 @@ export default function Posts() {
     )
 }
 
-function addLike(likes, elem, setLikes){
+function addLike(likes, elem, setLikes, heartColor, setHeartColor){
     switch(like){
         case 0:
             like = 1;
             setLikes(likes+like);
+            redHeart(heartColor, setHeartColor);
             break;
         case 1:
             if (elem === "picture"){
@@ -80,12 +82,30 @@ function addLike(likes, elem, setLikes){
             }
             like = (-1);
             setLikes(likes + like);
+            redHeart(heartColor, setHeartColor);
             break;
         case (-1):
             like = 1;
             setLikes(likes+like);
+            redHeart(heartColor, setHeartColor);
             break;
         default:
             break;
     }
+}
+
+function redHeart(heartColor, setHeartColor){
+    console.log("Oi vermelho")
+    if(heartColor === ""){
+        heartColor = "red-icon";
+    } else {
+        heartColor = "";
+        
+    }
+    setHeartColor(heartColor);
+}
+
+function likesToString(num){
+    const likesStr = `${parseInt(num/1000)}.${num%1000}`;
+    return likesStr;
 }
