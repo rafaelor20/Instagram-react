@@ -39,7 +39,7 @@ function Post(props) {
                 </div>
             </div>
             <div className="conteudo">
-                <img data-test="post-image" onClick={()=>(addLike(likes, "picture", setLikes, heartColor, setHeartColor, heartIcon, setHeartIcon))} src={props.imagem} />
+                <img data-test="post-image" onDoubleClick={()=>(addLike(likes, "picture", setLikes, heartColor, setHeartColor, heartIcon, setHeartIcon))} src={props.imagem} />
             </div>
             <div className="fundo">
                 <div className="acoes">
