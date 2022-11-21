@@ -25,7 +25,8 @@ const postsLst = [
 
 function Post(props) {
     const [likes, setLikes] = React.useState(props.quantCurtidas);
-    const [heartColor, setHeartColor] = React.useState("black");
+    const [heartColor, setHeartColor] = React.useState("black-icon md hydrated");
+    const [heartIcon, setHeartIcon] = React.useState("heart-outline");
     return (
         <div data-test="post" className="post">
             <div className="topo">
@@ -38,12 +39,12 @@ function Post(props) {
                 </div>
             </div>
             <div className="conteudo">
-                <img data-test="post-image" onClick={()=>(addLike(likes, "picture", setLikes, heartColor, setHeartColor))} src={props.imagem} />
+                <img data-test="post-image" onClick={()=>(addLike(likes, "picture", setLikes, heartColor, setHeartColor, heartIcon, setHeartIcon))} src={props.imagem} />
             </div>
             <div className="fundo">
                 <div className="acoes">
                     <div>
-                        <ion-icon class={heartColor} data-test="like-post" onClick={()=>(addLike(likes, "likeButton", setLikes, heartColor, setHeartColor))} name="heart-outline" ></ion-icon>
+                        <ion-icon class={heartColor} data-test="like-post" onClick={()=>(addLike(likes, "likeButton", setLikes, heartColor, setHeartColor, heartIcon, setHeartIcon))} name={heartIcon} ></ion-icon>
                         <Icone name="chatbubble-outline" />
                         <Icone name="paper-plane-outline" />
                     </div>
@@ -68,12 +69,14 @@ export default function Posts() {
     )
 }
 
-function addLike(likes, elem, setLikes, heartColor, setHeartColor){
+function addLike(likes, elem, setLikes, heartColor, setHeartColor, heartIcon, setHeartIcon){
     switch(like){
         case 0:
             like = 1;
             setLikes(likes+like);
+            setHeartIconAux(heartIcon, setHeartIcon);
             redHeart(heartColor, setHeartColor);
+            
             break;
         case 1:
             if (elem === "picture"){
@@ -82,12 +85,16 @@ function addLike(likes, elem, setLikes, heartColor, setHeartColor){
             }
             like = (-1);
             setLikes(likes + like);
+            setHeartIconAux(heartIcon, setHeartIcon);
             redHeart(heartColor, setHeartColor);
+            
             break;
         case (-1):
             like = 1;
             setLikes(likes+like);
+            setHeartIconAux(heartIcon, setHeartIcon);
             redHeart(heartColor, setHeartColor);
+            
             break;
         default:
             break;
@@ -95,14 +102,22 @@ function addLike(likes, elem, setLikes, heartColor, setHeartColor){
 }
 
 function redHeart(heartColor, setHeartColor){
-    console.log("Oi vermelho")
-    if(heartColor === ""){
-        heartColor = "red-icon";
+    if(heartColor === "black-icon md hydrated"){
+        heartColor = "red-icon md hydrated";
     } else {
-        heartColor = "";
+        heartColor = "black-icon md hydrated";
         
     }
     setHeartColor(heartColor);
+}
+
+function setHeartIconAux(heartIcon, setHeartIcon){
+    if (heartIcon === "heart-outline"){
+        heartIcon = "heart-sharp";
+    } else {
+        heartIcon = "heart-outline";
+    }
+    setHeartIcon(heartIcon);
 }
 
 function likesToString(num){
